@@ -1,4 +1,4 @@
-package com.company;
+package com.company.lab01;
 
 import com.sun.nio.sctp.AbstractNotificationHandler;
 
@@ -10,7 +10,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
+/*
         //Variables
         String texto = "Cadena de caracteres";
         int entero = 5;
@@ -52,6 +52,6 @@ public class Main {
         //Method Result
         String resultadoMetodo =  metodo(texto);
         System.out.println(resultadoMetodo);
-
+*/
     }
 }
