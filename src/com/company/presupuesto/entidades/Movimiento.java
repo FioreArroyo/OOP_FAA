@@ -1,5 +1,6 @@
 package com.company.presupuesto.entidades;
 
+import java.awt.desktop.SystemEventListener;
 import java.util.Date;
 
 public class Movimiento {
@@ -21,7 +22,13 @@ public class Movimiento {
     }
 
     public String getNombre(){
+
         return  this.nombre;
     }
+
+   // protected void imprimaHola(){
+
+       // System.out.println("Hola");
+    //}
 
 }
