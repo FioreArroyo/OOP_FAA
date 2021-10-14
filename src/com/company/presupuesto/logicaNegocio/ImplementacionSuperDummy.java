@@ -2,7 +2,7 @@ package com.company.presupuesto.logicaNegocio;
 
 import com.company.presupuesto.entidades.Movimiento;
 
-public class ImplementacionSuperDummy implements InterfaceRegistro {
+public class ImplementacionSuperDummy implements InterfaceRegistro, InterfaceReportes {
     @Override
     public void getMovimientos() {
         System.out.println("No haga nada");
@@ -21,6 +21,13 @@ public class ImplementacionSuperDummy implements InterfaceRegistro {
 
     @Override
     public void getGastos() {
+
         System.out.println("No haga nada");
+    }
+
+    @Override
+    public void imprimirReporte() {
+        System.out.println("No haga nada");
+
     }
 }

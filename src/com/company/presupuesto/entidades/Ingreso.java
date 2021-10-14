@@ -19,5 +19,15 @@ public class Ingreso extends Movimiento {
         return  super.getNombre() + " " + this.periodicidad;
     }
 
+    @Override
+    public String getDatails() {
+        return  "INGRESO " + this.getNombre() + " - " +
+                this.getMoneda() + " - " +
+                this.getCategoria() + " - " +
+                this.getMonto() + " - " +
+                this.periodicidad
+                ;
+    }
+
 
 }

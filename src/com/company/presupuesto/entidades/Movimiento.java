@@ -3,7 +3,7 @@ package com.company.presupuesto.entidades;
 import java.awt.desktop.SystemEventListener;
 import java.util.Date;
 
-public class Movimiento {
+public abstract class Movimiento {
     private String nombre;
     private String moneda;
     private String categoria;
@@ -21,14 +21,30 @@ public class Movimiento {
         this.fecha = new Date();
     }
 
-    public String getNombre(){
+    public abstract String getDatails();
+
+
+     String getNombre(){
 
         return  this.nombre;
     }
 
-   // protected void imprimaHola(){
 
-       // System.out.println("Hola");
-    //}
+     String getMoneda() {
+        return moneda;
+    }
 
+     String getCategoria() {
+        return categoria;
+    }
+
+
+
+     int getMonto() {
+        return monto;
+    }
+
+     Date getFecha() {
+        return fecha;
+    }
 }
