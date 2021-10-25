@@ -1,6 +1,6 @@
 package com.company.presupuesto.logicaNegocio;
 
-import com.company.presupuesto.entidades.Movimiento;
+
 
 public class ImplementacionSuperDummy implements InterfaceRegistro, InterfaceReportes {
     @Override
@@ -9,13 +9,15 @@ public class ImplementacionSuperDummy implements InterfaceRegistro, InterfaceRep
     }
 
     @Override
-    public void addIngreso(String nombre, String moneda, String categoria, String monto, String periodicidad) {
+    public boolean addIngreso(String nombre, String moneda, String categoria, String monto, String periodicidad) {
         System.out.println("No haga nada");
+        return true;
     }
 
     @Override
-    public void addGasto(String nombre, String moneda, String categoria, String monto) {
+    public boolean addGasto(String nombre, String moneda, String categoria, String monto) {
         System.out.println("No haga nada");
+        return  true;
     }
 
 

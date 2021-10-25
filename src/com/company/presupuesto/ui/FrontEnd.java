@@ -1,7 +1,9 @@
 package com.company.presupuesto.ui;
 
 import com.company.presupuesto.logicaNegocio.ImplementacionRegistro;
+import com.company.presupuesto.logicaNegocio.ImplementacionRegistroEnArchivo;
 import com.company.presupuesto.logicaNegocio.InterfaceRegistro;
+import com.company.presupuesto.repo.FileRepository;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +20,10 @@ public class FrontEnd extends JFrame {
     }
 
     public void  build(){
+
+
+        InterfaceRegistro registro = new ImplementacionRegistroEnArchivo(new FileRepository());
+
         //CREATE COMPONENTS
         JLabel lblNombre = new JLabel("Nombre");
         JTextField txtNombre = new JTextField();
@@ -39,8 +45,8 @@ public class FrontEnd extends JFrame {
 
         JButton salvar = new JButton("Salvar");
         JButton reporte = new JButton("Reporte");
-        InterfaceRegistro registro = new ImplementacionRegistro();
 
+        JLabel lblWarnings = new JLabel("");
         //ACTIONS
         ckIsIngreso.addActionListener(new AbstractAction() {
             @Override
@@ -52,18 +58,28 @@ public class FrontEnd extends JFrame {
         salvar.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-             if(ckIsIngreso.isSelected()){
-                 registro.addIngreso(txtNombre.getText(),
+                boolean exitoso = false;
+                if(ckIsIngreso.isSelected()){
+                 lblWarnings.setText("Salvando Ingreso");
+                    exitoso =  registro.addIngreso(txtNombre.getText(),
                          txtMoneda.getText(),
                          txtCategoria.getText(),
                          txtMonto.getText(),
                          txtPeriodicidad.getText());
              }else {
-                 registro.addGasto(txtNombre.getText(),
+                 lblWarnings.setText("Salvando Gasto");
+                    exitoso = registro.addGasto(txtNombre.getText(),
                          txtMoneda.getText(),
                          txtCategoria.getText(),
                          txtMonto.getText());
              }
+              if(exitoso){
+                  txtNombre.setText("");
+                  txtMoneda.setText("");
+                  txtCategoria.setText("");
+                  txtMonto.setText("");
+                  txtPeriodicidad.setText("");
+              }
             }
         });
 
@@ -89,5 +105,6 @@ public class FrontEnd extends JFrame {
         super.add(ckIsIngreso);
         super.add(salvar);
         super.add(reporte);
+        super.add(lblWarnings);
     }
 }
