@@ -1,67 +1,56 @@
 package com.company.presupuesto.logicaNegocio;
+
 import com.company.presupuesto.entidades.Gasto;
 import com.company.presupuesto.entidades.Ingreso;
-import com.company.presupuesto.entidades.Movimiento;
+import com.company.presupuesto.repo.InterfaceReposotory;
 
 
-import java.util.ArrayList;
-import java.util.List;
+public class ImplementacionRegistro implements InterfaceRegistro {
 
-public class ImplementacionRegistro implements InterfaceRegistro, InterfaceReportes {
+    private InterfaceReposotory repository;
 
-   private List<Movimiento> movimientos;
+    public ImplementacionRegistro(InterfaceReposotory reposotory){
+        this.repository = reposotory;
 
-   //Constructor
-    public ImplementacionRegistro(){
-        this.movimientos = new ArrayList<>();
-    }
-
-    //Metodo 1
-    public void getMovimientos(){
-        for (Movimiento movimientos : movimientos){
-            System.out.println(movimientos.getDatails());
-        }
     }
 
     @Override
     public boolean addIngreso(String nombre, String moneda, String categoria, String montoStr, String periodicidad) {
-        if (!moneda.equals("USD")){
-            System.out.println("Moneda No valida");
-        } else {
-            int monto = Integer.parseInt(montoStr);
-            this.movimientos.add(new Ingreso(nombre,
-                    moneda,
-                    categoria,
-                    monto,
-                    periodicidad));
-            }
-        return  true;
+
+        int monto;
+        try {
+            monto = Integer.parseInt(montoStr);
+        }catch (NumberFormatException ex){
+            System.out.println("Formato inválido en ("+montoStr+"): "+ ex.getMessage());
+            return  false;
+        }
+
+        Ingreso ingreso = new Ingreso(nombre,
+                moneda,
+                categoria,
+                monto,
+                periodicidad);
+        return this.repository.save(ingreso.getDatails());
+
     }
 
     @Override
     public boolean addGasto(String nombre, String moneda, String categoria, String montoStr) {
         int monto = Integer.parseInt(montoStr);
-        this.movimientos.add(new Gasto(nombre,
+        Gasto gasto = new Gasto(nombre,
                 moneda,
                 categoria,
-                monto));
-        return  true;
-    }
-
-
-    //Metodo 3
-    public void getGastos(){
-        for (Movimiento movimiento : this.movimientos){
-        if(movimiento instanceof Gasto){
-           System.out.println(movimiento.getDatails());
-            }
-        }
+                monto);
+        return this.repository.save(gasto.getDatails());
     }
 
     @Override
-    public void imprimirReporte() {
-        for (Movimiento movimiento : this.movimientos){
-                System.out.println(movimiento.getDatails());
-        }
+    public void getMovimientos() {
+        this.repository.read();
+    }
+
+    @Override
+    public void getGastos() {
+        this.repository.read();
     }
 }

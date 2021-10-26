@@ -1,9 +1,9 @@
 package com.company.presupuesto.ui;
 
 import com.company.presupuesto.logicaNegocio.ImplementacionRegistro;
-import com.company.presupuesto.logicaNegocio.ImplementacionRegistroEnArchivo;
 import com.company.presupuesto.logicaNegocio.InterfaceRegistro;
 import com.company.presupuesto.repo.FileRepository;
+import com.company.presupuesto.repo.InMemoryRepository;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +22,7 @@ public class FrontEnd extends JFrame {
     public void  build(){
 
 
-        InterfaceRegistro registro = new ImplementacionRegistroEnArchivo(new FileRepository());
+        InterfaceRegistro registro = new ImplementacionRegistro(new InMemoryRepository());
 
         //CREATE COMPONENTS
         JLabel lblNombre = new JLabel("Nombre");
