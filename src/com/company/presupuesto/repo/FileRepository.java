@@ -8,7 +8,11 @@ public class FileRepository implements InterfaceReposotory {
     private  static final String FILE_PATH= "db.txt";
 
     @Override
-    public boolean save(String text) {
+    public boolean save(String text) throws ErrorMuyPocaData {
+
+        if (text.replace(" - ", "").replace("INGRESO: ", "").trim().length() < 5){
+            throw new ErrorMuyPocaData(text);
+        }
 
         try ( FileWriter fileWriter = new FileWriter(this.FILE_PATH, true);
               BufferedWriter writer = new BufferedWriter(fileWriter)){
