@@ -1,8 +1,6 @@
 package com.company.presupuesto.ui;
 
-import com.company.presupuesto.logicaNegocio.FormatoInvalido;
-import com.company.presupuesto.logicaNegocio.ImplementacionRegistro;
-import com.company.presupuesto.logicaNegocio.InterfaceRegistro;
+import com.company.presupuesto.logicaNegocio.*;
 import com.company.presupuesto.repo.ErrorMuyPocaData;
 import com.company.presupuesto.repo.FileRepository;
 
@@ -23,7 +21,7 @@ public class FrontEnd extends JFrame {
     public void  build(){
 
 
-        InterfaceRegistro registro = new ImplementacionRegistro(new FileRepository());
+       // InterfaceRegistro registro = new ImplementacionRegistro(new FileRepository());
 
         //CREATE COMPONENTS
         JLabel lblNombre = new JLabel("Nombre");
@@ -56,7 +54,7 @@ public class FrontEnd extends JFrame {
                 txtPeriodicidad.setVisible(!txtPeriodicidad.isVisible());
             }
         });
-        salvar.addActionListener(new AbstractAction() {
+      /*  salvar.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boolean exitoso = false;
@@ -94,10 +92,10 @@ public class FrontEnd extends JFrame {
         reporte.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                registro.getGastos();
-                registro.getMovimientos();
+                 registro.getGastos();
+                 registro.getMovimientos();
             }
-        });
+        });*/
 
         //ADD INTO THE CONTAINER
         super.add(lblNombre);

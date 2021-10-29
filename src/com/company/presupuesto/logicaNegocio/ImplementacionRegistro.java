@@ -4,6 +4,7 @@ import com.company.presupuesto.entidades.Gasto;
 import com.company.presupuesto.entidades.Ingreso;
 import com.company.presupuesto.entidades.Movimiento;
 import com.company.presupuesto.repo.ErrorMuyPocaData;
+import com.company.presupuesto.repo.FileRepository;
 import com.company.presupuesto.repo.InterfaceReposotory;
 
 import java.text.Normalizer;
@@ -12,10 +13,13 @@ public class ImplementacionRegistro implements InterfaceRegistro {
 
     private InterfaceReposotory repository;
 
-    public ImplementacionRegistro(InterfaceReposotory reposotory){
-        this.repository = reposotory;
-
+    public ImplementacionRegistro(){
+        this.repository = new FileRepository();
     }
+
+   /* public ImplementacionRegistro(InterfaceReposotory reposotory){
+        this.repository = reposotory;
+    }*/
 
     @Override
     public boolean addIngreso(String nombre, String moneda, String categoria, String montoStr, String periodicidad) throws ErrorMuyPocaData {
