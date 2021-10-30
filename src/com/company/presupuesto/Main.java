@@ -4,6 +4,8 @@ import com.company.presupuesto.logicaNegocio.ImplementacionGetMovimiento;
 import com.company.presupuesto.logicaNegocio.InterfaceRegistro;
 import com.company.presupuesto.repo.FileRepository;
 import com.company.presupuesto.ui.FrontEnd;
+import com.company.presupuesto.logicaNegocio.ImplementacionRegistro;
+import com.company.presupuesto.repo.InMemoryRepository;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,9 +17,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Sistema de Registro de Movimientos");
-        ImplementacionGetMovimiento pool = new ImplementacionGetMovimiento();
-       try {
+        System.out.println("Sistema Registro de Movimientos");
+        FrontEnd fe = new FrontEnd("Sistema Registro de Movimientos");
+        fe.build();
+      /* try {
             InterfaceRegistro objeto1 = pool.checkOut();
             objeto1.getMovimientos();
 
@@ -43,6 +46,6 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+    */
     }
 }

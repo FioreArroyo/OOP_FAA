@@ -1,7 +1,4 @@
 package com.company.presupuesto.logicaNegocio;
-import com.company.presupuesto.repo.InterfaceReposotory;
-
-import java.util.Hashtable;
 
 public class ImplementacionGetMovimiento  extends ObjectPool<InterfaceRegistro>  {
 
@@ -11,8 +8,8 @@ public class ImplementacionGetMovimiento  extends ObjectPool<InterfaceRegistro> 
 
         @Override
         protected InterfaceRegistro crear() {
-
-            return  new ImplementacionRegistro();
+            return null;
+            //return  new ImplementacionRegistro();
         }
 
         @Override

@@ -1,6 +1,7 @@
 package com.company.presupuesto.repo;
 
 import java.io.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class FileRepository implements InterfaceReposotory {
@@ -22,16 +23,21 @@ public class FileRepository implements InterfaceReposotory {
     }
 
     @Override
-    public void read() {
+    public List<String> read() {
+        List<String> resultado;
         try {
             FileReader fileReader = new FileReader(this.FILE_PATH);
             BufferedReader reader = new BufferedReader(fileReader);
-            for (String linea : reader.lines().collect(Collectors.toList())){
+            for (String linea :  reader.lines().collect(Collectors.toList())){
                 System.out.println(linea);
             }
+
+            resultado = reader.lines().collect(Collectors.toList());
             fileReader.close();
-        } catch (IOException e) {
+            return resultado;
+        } catch (IOException e){
             e.printStackTrace();
+            return null;
         }
     }
 }

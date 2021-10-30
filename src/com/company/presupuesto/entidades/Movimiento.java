@@ -21,6 +21,7 @@ public abstract class Movimiento {
         this.fecha = new Date();
     }
 
+
     public abstract String getDatails();
 
 
@@ -47,4 +48,6 @@ public abstract class Movimiento {
      Date getFecha() {
         return fecha;
     }
+
+
 }

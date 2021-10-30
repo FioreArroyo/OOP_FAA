@@ -1,11 +1,10 @@
 package com.company.presupuesto.repo;
 
-import com.company.presupuesto.entidades.Movimiento;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InMemoryRepository implements  InterfaceReposotory {
+public class InMemoryRepository implements InterfaceReposotory {
 
     //private List<Movimiento> movimientos;
     List<String> movimientos;
@@ -22,9 +21,16 @@ public class InMemoryRepository implements  InterfaceReposotory {
     }
 
     @Override
-    public void read() {
-        for(String item : this.movimientos){
+    public List<String> read() {
+
+        try {
+            throw new IOException();
+        } catch (IOException | NullPointerException ex) {
+            ex.printStackTrace();
+        }
+        for (String item : this.movimientos){
             System.out.println(item);
         }
+        return null;
     }
 }

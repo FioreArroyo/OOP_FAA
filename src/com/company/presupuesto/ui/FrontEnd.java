@@ -4,9 +4,11 @@ import com.company.presupuesto.logicaNegocio.*;
 import com.company.presupuesto.repo.ErrorMuyPocaData;
 import com.company.presupuesto.repo.FileRepository;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.stream.Collectors;
 
 public class FrontEnd extends JFrame {
 
@@ -21,8 +23,8 @@ public class FrontEnd extends JFrame {
     public void  build(){
 
 
-       // InterfaceRegistro registro = new ImplementacionRegistro(new FileRepository());
-
+        InterfaceRegistro registro = new ImplementacionRegistro(new FileRepository());
+        InterfaceReportes reportes = new ImplementacionReportes(new FileRepository());
         //CREATE COMPONENTS
         JLabel lblNombre = new JLabel("Nombre");
         JTextField txtNombre = new JTextField();
@@ -54,7 +56,7 @@ public class FrontEnd extends JFrame {
                 txtPeriodicidad.setVisible(!txtPeriodicidad.isVisible());
             }
         });
-      /*  salvar.addActionListener(new AbstractAction() {
+        salvar.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boolean exitoso = false;
@@ -92,10 +94,12 @@ public class FrontEnd extends JFrame {
         reporte.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 registro.getGastos();
-                 registro.getMovimientos();
+                reportes.getGastos();
+
+                JOptionPane.showMessageDialog(FrontEnd.super.rootPane, String.join("", reportes.getMovimientos()));
+
             }
-        });*/
+        });
 
         //ADD INTO THE CONTAINER
         super.add(lblNombre);
